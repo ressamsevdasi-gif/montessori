@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#dff3ff">
+  <meta name="description" content="Çocuklar için güvenli, sakin ve keşif odaklı öğrenme dünyası.">
+  <title>MONTESSORI — Keşfet. Dene. Öğren. Hayal Et.</title>
+
+  <link rel="stylesheet" href="src/css/design-system.css">
+
+  <style>
+    :root{
+      --bottom-space:92px;
+    }
+
+    .app{
+      width:min(100%,1180px);
+      margin:auto;
+      min-height:100vh;
+      padding:
+        max(18px,env(safe-area-inset-top))
+        16px
+        calc(var(--bottom-space) + env(safe-area-inset-bottom));
+    }
+
+    .topbar{
+      display:grid;
+      grid-template-columns:52px 1fr 52px;
+      align-items:center;
+      gap:12px;
+      min-height:64px;
+    }
+
+    .icon-button{
+      width:52px;
+      height:52px;
+      border:0;
+      border-radius:50%;
+      background:rgb(255 255 255 / 78%);
+      box-shadow:var(--shadow);
+      cursor:pointer;
+    }
+
+    .brand{
+      text-align:center;
+    }
+
+    .brand strong{
+      display:block;
+      font-size:20px;
+      letter-spacing:.02em;
+    }
+
+    .brand span{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .welcome{
+      position:relative;
+      overflow:hidden;
+      margin-top:10px;
+      padding:24px 20px 28px;
+      border-radius:var(--radius-xl);
+      background:rgb(255 255 255 / 62%);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .welcome::after{
+      content:"";
+      position:absolute;
+      width:110px;
+      height:110px;
+      right:-32px;
+      top:-30px;
+      border-radius:50%;
+      background:var(--yellow);
+      opacity:.65;
+    }
+
+    .eyebrow{
+      margin:0 0 6px;
+      color:var(--green-deep);
+      font-size:14px;
+      font-weight:800;
+    }
+
+    h1{
+      position:relative;
+      z-index:1;
+      max-width:650px;
+      margin:0;
+      font-size:clamp(28px,8vw,46px);
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    .welcome p{
+      position:relative;
+      z-index:1;
+      max-width:620px;
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .section-heading{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      margin:26px 4px 12px;
+    }
+
+    .section-heading h2{
+      margin:0;
+      font-size:22px;
+    }
+
+    .section-heading span{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .world{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .activity{
+      position:relative;
+      min-height:142px;
+      border:0;
+      border-radius:var(--radius-lg);
+      padding:18px;
+      text-align:left;
+      cursor:pointer;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:
+        transform var(--motion) ease,
+        box-shadow var(--motion) ease;
+    }
+
+    .activity:active{
+      transform:scale(.97);
+    }
+
+    .activity.is-selected{
+      box-shadow:0 0 0 3px var(--navy),var(--shadow);
+    }
+
+    .activity-icon{
+      display:grid;
+      place-items:center;
+      width:54px;
+      height:54px;
+      margin-bottom:16px;
+      border-radius:18px;
+      background:rgb(255 255 255 / 70%);
+      font-size:28px;
+    }
+
+    .activity strong{
+      display:block;
+      font-size:19px;
+    }
+
+    .activity small{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .letters{background:var(--yellow)}
+    .numbers{background:var(--green)}
+    .writing{background:var(--lavender)}
+    .stories{background:#f8d5c9}
+    .science{background:var(--sky)}
+    .art{background:#f5e4bc}
+
+    .discovery{
+      margin-top:14px;
+      padding:20px;
+      border-radius:var(--radius-lg);
+      background:var(--green);
+      box-shadow:var(--shadow);
+    }
+
+    .discovery strong{
+      font-size:19px;
+    }
+
+    .discovery p{
+      margin:7px 0 0;
+      color:#355a48;
+      line-height:1.45;
+    }
+
+    .progress{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-top:14px;
+      padding:16px;
+      border-radius:var(--radius-lg);
+      background:rgb(255 255 255 / 82%);
+      box-shadow:var(--shadow);
+    }
+
+    .plant{
+      display:grid;
+      place-items:center;
+      flex:0 0 56px;
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      background:var(--cream);
+      font-size:30px;
+    }
+
+    .progress strong{
+      display:block;
+      font-size:16px;
+    }
+
+    .progress span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .bottom-nav{
+      position:fixed;
+      z-index:20;
+      left:50%;
+      bottom:max(10px,env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      width:min(calc(100% - 24px),520px);
+      padding:7px;
+      border:1px solid rgb(255 255 255 / 70%);
+      border-radius:24px;
+      background:rgb(255 255 255 / 88%);
+      box-shadow:0 14px 35px rgb(32 52 71 / 18%);
+      backdrop-filter:blur(14px);
+    }
+
+    .nav-item{
+      min-height:58px;
+      border:0;
+      border-radius:18px;
+      background:transparent;
+      cursor:pointer;
+    }
+
+    .nav-item span{
+      display:block;
+      margin-top:3px;
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .nav-item.is-active{
+      background:var(--sky);
+    }
+
+    @media(min-width:700px){
+      .app{
+        padding-left:28px;
+        padding-right:28px;
+      }
+
+      .world{
+        grid-template-columns:repeat(3,1fr);
+        gap:16px;
+      }
+
+      .activity{
+        min-height:175px;
+        padding:22px;
+      }
+
+      .welcome{
+        padding:34px;
+      }
+    }
+
+    @media(min-width:1000px){
+      .app{
+        padding-top:28px;
+      }
+
+      .world{
+        grid-template-columns:repeat(6,1fr);
+      }
+
+      .activity{
+        min-height:190px;
+      }
+
+      .activity:first-child{
+        grid-column:span 2;
+      }
+
+      .bottom-nav{
+        width:480px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <header class="topbar" aria-label="Uygulama üst menüsü">
+      <button class="icon-button" aria-label="Menü">☰</button>
+
+      <div class="brand">
+        <strong>MONTESSORI</strong>
+        <span>Keşfet. Dene. Öğren. Hayal Et.</span>
+      </div>
+
+      <button class="icon-button" aria-label="Ses ayarları">🔊</button>
+    </header>
+
+    <section class="welcome" aria-labelledby="welcome-title">
+      <p class="eyebrow">Bugünün keşif dünyası</p>
+      <h1 id="welcome-title">Bugün ne keşfetmek istersin?</h1>
+      <p>
+        Bir harf, bir sayı, bir hikâye ya da yepyeni bir fikir.
+        Seç ve kendi hızında keşfet.
+      </p>
+    </section>
+
+    <div class="section-heading">
+      <h2>Keşif Dünyası</h2>
+      <span>Birini seç</span>
+    </div>
+
+    <section class="world" aria-label="Öğrenme alanları">
+      <button class="activity letters" data-activity aria-label="Harfleri keşfet">
+        <span class="activity-icon">🔤</span>
+        <strong>Harfler</strong>
+        <small>Sesleri keşfet</small>
+      </button>
+
+      <button class="activity numbers" data-activity aria-label="Sayıları keşfet">
+        <span class="activity-icon">🔢</span>
+        <strong>Sayılar</strong>
+        <small>Say ve keşfet</small>
+      </button>
+
+      <button class="activity writing" data-activity aria-label="Yazmayı keşfet">
+        <span class="activity-icon">✏️</span>
+        <strong>Çiz ve Yaz</strong>
+        <small>Parmağınla dene</small>
+      </button>
+
+      <button class="activity stories" data-activity aria-label="Hikâyeleri keşfet">
+        <span class="activity-icon">📚</span>
+        <strong>Hikâyeler</strong>
+        <small>Dinle ve katıl</small>
+      </button>
+
+      <button class="activity science" data-activity aria-label="Bilimi keşfet">
+        <span class="activity-icon">🔬</span>
+        <strong>Bilim</strong>
+        <small>Sor, dene, öğren</small>
+      </button>
+
+      <button class="activity art" data-activity aria-label="Sanatı keşfet">
+        <span class="activity-icon">🎨</span>
+        <strong>Sanat</strong>
+        <small>Hayal et ve üret</small>
+      </button>
+    </section>
+
+    <section class="discovery" aria-labelledby="discovery-title">
+      <strong id="discovery-title">🌱 Küçük bir keşif</strong>
+      <p>
+        Her gün yeni bir şey öğrenmek için tek bir doğru yol yok.
+        İstediğin yerden başlayabilirsin.
+      </p>
+    </section>
+
+    <section class="progress" aria-label="Öğrenme ilerlemesi">
+      <div class="plant" aria-hidden="true">🌿</div>
+      <div>
+        <strong>Keşif bahçen büyüyor</strong>
+        <span>Yeni öğrendiklerin burada gelişir.</span>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Ana navigasyon">
+    <button class="nav-item is-active" data-nav>
+      🏡
+      <span>Keşfet</span>
+    </button>
+    <button class="nav-item" data-nav>
+      📖
+      <span>Öğren</span>
+    </button>
+    <button class="nav-item" data-nav>
+      🎨
+      <span>Üret</span>
+    </button>
+    <button class="nav-item" data-nav>
+      🌱
+      <span>Ben</span>
+    </button>
+  </nav>
+
+  <script src="src/js/app.js" defer></script>
+</body>
+</html>
