@@ -189,3 +189,151 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* =========================================================
+   SPLASH SCREEN
+   ========================================================= */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 100dvh;
+  padding:
+    24px
+    24px
+    calc(24px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 50% 38%, rgb(255 255 255 / 92%), transparent 30%),
+    linear-gradient(180deg, var(--sky) 0%, var(--cream) 58%, #eef8ed 100%);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 420ms var(--ease),
+    visibility 420ms var(--ease);
+}
+
+.splash-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.splash-mark {
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  margin-bottom: 24px;
+  border-radius: 36px;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: 0 18px 45px rgb(32 52 71 / 12%);
+}
+
+.splash-mark span {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.splash-brand {
+  color: var(--navy);
+  font-size: clamp(1.6rem, 7vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.splash-slogan {
+  margin: 10px 0 28px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.splash-loader {
+  width: 58px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(57 120 91 / 14%);
+}
+
+.splash-loader span {
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green-deep);
+  animation: splash-loading 900ms var(--ease) infinite alternate;
+}
+
+.splash-orbit {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.splash-orbit-one {
+  width: 260px;
+  height: 260px;
+  top: -120px;
+  right: -90px;
+  background: rgb(120 191 231 / 24%);
+}
+
+.splash-orbit-two {
+  width: 220px;
+  height: 220px;
+  bottom: -100px;
+  left: -80px;
+  background: rgb(191 229 199 / 35%);
+}
+
+.app-shell {
+  min-height: 100dvh;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 420ms var(--ease),
+    transform 420ms var(--ease);
+}
+
+.app-shell.is-ready {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes splash-loading {
+  from {
+    transform: translateX(-10%);
+    opacity: .45;
+  }
+
+  to {
+    transform: translateX(145%);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen,
+  .app-shell {
+    transition: none;
+  }
+
+  .splash-loader span {
+    animation: none;
+    width: 100%;
+  }
+}

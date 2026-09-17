@@ -317,6 +317,28 @@
 </head>
 
 <body>
+  <section class="splash-screen" data-splash aria-label="MONTESSORI açılış ekranı">
+    <div class="splash-orbit splash-orbit-one" aria-hidden="true"></div>
+    <div class="splash-orbit splash-orbit-two" aria-hidden="true"></div>
+
+    <div class="splash-content">
+      <div class="splash-mark" aria-hidden="true">
+        <span>🌱</span>
+      </div>
+
+      <div class="splash-brand">MONTESSORI</div>
+
+      <p class="splash-slogan">
+        Merak et. Keşfet. Öğren.
+      </p>
+
+      <div class="splash-loader" aria-hidden="true">
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell" data-app>
   <main class="app">
     <header class="topbar" aria-label="Uygulama üst menüsü">
       <button class="icon-button" aria-label="Menü">☰</button>
@@ -417,6 +439,9 @@
     </button>
   </nav>
 
+  </div>
+
+  <script src="src/js/splash.js" defer></script>
   <script src="src/js/app.js" defer></script>
 </body>
 </html>
